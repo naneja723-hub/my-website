@@ -1,0 +1,2493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Learn With Kamal | Computer Learning Academy</title>
+
+<style>
+:root{
+ --bg:#06101d;
+ --panel:#0c1b2d;
+ --panel2:#11263e;
+ --text:#f3f8ff;
+ --muted:#9fb2c8;
+ --blue:#4d8dff;
+ --cyan:#00d9ff;
+ --green:#20d477;
+ --red:#ff4d5e;
+ --yellow:#ffc14d;
+ --border:#223b58;
+ --shadow:0 18px 50px rgba(0,0,0,.3);
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+ margin:0;
+ background:
+ radial-gradient(circle at 80% 0%,rgba(0,217,255,.07),transparent 30%),
+ linear-gradient(135deg,#040b14,#081525,#06101d);
+ color:var(--text);
+ font-family:Segoe UI,Arial,sans-serif;
+ min-height:100vh;
+}
+
+button,input,textarea,select{font:inherit}
+
+button{cursor:pointer}
+
+.app{
+ display:flex;
+ min-height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+ width:270px;
+ position:fixed;
+ top:0;
+ bottom:0;
+ left:0;
+ padding:20px 14px;
+ background:rgba(6,16,29,.97);
+ border-right:1px solid var(--border);
+ overflow-y:auto;
+ z-index:100;
+ transition:.3s;
+}
+
+.brand{
+ display:flex;
+ align-items:center;
+ gap:12px;
+ padding:8px 9px 25px;
+}
+
+.brand-logo{
+ width:48px;
+ height:48px;
+ display:grid;
+ place-items:center;
+ border-radius:14px;
+ background:linear-gradient(135deg,var(--blue),var(--cyan));
+ box-shadow:0 8px 25px rgba(0,190,255,.25);
+ font-size:25px;
+}
+
+.brand h1{
+ margin:0;
+ font-size:18px;
+}
+
+.brand small{
+ color:var(--muted);
+}
+
+.nav-title{
+ color:#66809a;
+ font-size:10px;
+ letter-spacing:1.5px;
+ text-transform:uppercase;
+ padding:15px 12px 7px;
+}
+
+.nav button{
+ width:100%;
+ border:0;
+ background:transparent;
+ color:#b6c8db;
+ text-align:left;
+ padding:12px;
+ border-radius:10px;
+ margin:2px 0;
+ transition:.2s;
+}
+
+.nav button:hover,
+.nav button.active{
+ background:linear-gradient(
+  90deg,
+  rgba(77,141,255,.2),
+  rgba(0,217,255,.04)
+ );
+ color:white;
+}
+
+.nav button.active{
+ border-left:3px solid var(--cyan);
+}
+
+/* MAIN */
+
+.main{
+ margin-left:270px;
+ width:calc(100% - 270px);
+}
+
+.topbar{
+ height:68px;
+ position:sticky;
+ top:0;
+ z-index:50;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:15px;
+ padding:12px 25px;
+ background:rgba(5,14,25,.85);
+ backdrop-filter:blur(18px);
+ border-bottom:1px solid var(--border);
+}
+
+.search{
+ width:min(520px,65%);
+}
+
+.search input{
+ width:100%;
+ padding:12px 15px;
+ border-radius:10px;
+ border:1px solid var(--border);
+ background:#0b192b;
+ color:white;
+ outline:none;
+}
+
+.actions{
+ display:flex;
+ gap:8px;
+}
+
+.icon-btn{
+ width:42px;
+ height:42px;
+ border-radius:10px;
+ border:1px solid var(--border);
+ background:#10253d;
+ color:white;
+}
+
+.mobile-menu{display:none}
+
+.content{
+ max-width:1500px;
+ padding:30px;
+ margin:auto;
+}
+
+/* HERO */
+
+.hero{
+ padding:40px;
+ border:1px solid var(--border);
+ border-radius:25px;
+ background:
+ radial-gradient(circle at 85% 20%,rgba(0,217,255,.17),transparent 32%),
+ radial-gradient(circle at 20% 100%,rgba(77,141,255,.12),transparent 35%),
+ #0b1b2e;
+ box-shadow:var(--shadow);
+}
+
+.hero-badge{
+ display:inline-block;
+ padding:6px 11px;
+ border-radius:20px;
+ background:#102e4d;
+ color:#76caff;
+ font-size:11px;
+ font-weight:bold;
+}
+
+.hero h2{
+ font-size:clamp(30px,5vw,56px);
+ margin:18px 0 12px;
+ line-height:1.05;
+}
+
+.gradient{
+ background:linear-gradient(90deg,#70a7ff,#00e5ff);
+ -webkit-background-clip:text;
+ color:transparent;
+}
+
+.hero p{
+ color:var(--muted);
+ max-width:800px;
+ line-height:1.8;
+}
+
+.btn{
+ border:0;
+ border-radius:10px;
+ padding:12px 18px;
+ color:white;
+ background:linear-gradient(135deg,var(--blue),#276be9);
+ font-weight:700;
+ margin:5px 4px 5px 0;
+ transition:.2s;
+}
+
+.btn:hover{
+ transform:translateY(-2px);
+ box-shadow:0 8px 20px rgba(77,141,255,.2);
+}
+
+.btn.secondary{
+ background:#122942;
+ border:1px solid var(--border);
+}
+
+.btn.green{background:var(--green)}
+.btn.red{background:var(--red)}
+
+.stats{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:15px;
+ margin:22px 0;
+}
+
+.stat{
+ background:var(--panel);
+ border:1px solid var(--border);
+ border-radius:16px;
+ padding:20px;
+}
+
+.stat strong{
+ display:block;
+ font-size:28px;
+ margin-bottom:5px;
+}
+
+.stat span{
+ color:var(--muted);
+ font-size:13px;
+}
+
+/* SECTION */
+
+.section-head{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ margin:30px 0 16px;
+}
+
+.section-head h2{margin:0}
+
+.grid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:18px;
+}
+
+.card{
+ background:var(--panel);
+ border:1px solid var(--border);
+ border-radius:17px;
+ padding:20px;
+ transition:.25s;
+}
+
+.card:hover{
+ transform:translateY(-4px);
+ border-color:#315b83;
+ box-shadow:var(--shadow);
+}
+
+.card-icon{
+ font-size:34px;
+ margin-bottom:12px;
+}
+
+.card h3{
+ margin:8px 0;
+}
+
+.card p{
+ color:var(--muted);
+ line-height:1.65;
+ font-size:14px;
+}
+
+.badge{
+ display:inline-block;
+ padding:5px 9px;
+ border-radius:20px;
+ background:#112d49;
+ color:#7ecaff;
+ font-size:10px;
+ font-weight:bold;
+}
+
+/* PROGRESS */
+
+.progress{
+ height:7px;
+ border-radius:20px;
+ overflow:hidden;
+ background:#182c43;
+ margin:15px 0;
+}
+
+.progress div{
+ height:100%;
+ background:linear-gradient(90deg,var(--blue),var(--cyan));
+ transition:.5s;
+}
+
+/* LESSON */
+
+.lesson{
+ background:var(--panel);
+ border:1px solid var(--border);
+ border-radius:20px;
+ padding:30px;
+}
+
+.lesson h2{
+ font-size:34px;
+}
+
+.lesson h3{
+ color:#6dbbff;
+ margin-top:28px;
+}
+
+.lesson p,
+.lesson li{
+ color:#c2cfdd;
+ line-height:1.85;
+}
+
+.lesson li{
+ margin:7px 0;
+}
+
+.code{
+ background:#020811;
+ color:#8de2ff;
+ padding:18px;
+ border-radius:12px;
+ border:1px solid #1c344e;
+ overflow:auto;
+ font-family:Consolas,monospace;
+ line-height:1.7;
+}
+
+/* QUIZ */
+
+.quiz-box{
+ max-width:950px;
+ margin:auto;
+ background:var(--panel);
+ border:1px solid var(--border);
+ border-radius:20px;
+ padding:28px;
+}
+
+.quiz-top{
+ display:flex;
+ justify-content:space-between;
+ color:var(--muted);
+}
+
+.question{
+ font-size:23px;
+ line-height:1.5;
+ margin:25px 0;
+}
+
+.option{
+ display:block;
+ width:100%;
+ text-align:left;
+ padding:16px;
+ margin:9px 0;
+ border-radius:12px;
+ border:1px solid #29435f;
+ background:#10243a;
+ color:white;
+ transition:.2s;
+}
+
+.option:hover{
+ border-color:var(--blue);
+}
+
+.option.correct{
+ background:rgba(32,212,119,.15);
+ border-color:var(--green);
+}
+
+.option.wrong{
+ background:rgba(255,77,94,.15);
+ border-color:var(--red);
+}
+
+.explanation{
+ margin-top:18px;
+ padding:15px;
+ border-radius:10px;
+ border-left:4px solid var(--cyan);
+ background:#091728;
+ color:#bdccdb;
+ line-height:1.6;
+}
+
+/* TYPING */
+
+.typing{
+ max-width:1100px;
+ margin:auto;
+}
+
+.typing-stats{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:12px;
+ margin:20px 0;
+}
+
+.type-stat{
+ text-align:center;
+ background:var(--panel);
+ border:1px solid var(--border);
+ border-radius:13px;
+ padding:16px;
+}
+
+.type-stat strong{
+ display:block;
+ font-size:27px;
+}
+
+.type-display{
+ min-height:190px;
+ background:#030912;
+ border:1px solid var(--border);
+ border-radius:16px;
+ padding:25px;
+ color:#71859b;
+ font-size:21px;
+ line-height:2;
+ margin-bottom:15px;
+}
+
+.type-display .typed{
+ color:white;
+}
+
+.type-display .wrong{
+ color:#ff6371;
+ background:rgba(255,77,94,.12);
+}
+
+.type-display .current{
+ color:white;
+ background:#235f9a;
+ border-radius:3px;
+}
+
+#typingInput{
+ width:100%;
+ min-height:150px;
+ resize:vertical;
+ padding:18px;
+ color:white;
+ background:#0b1b2e;
+ border:1px solid var(--border);
+ border-radius:14px;
+ outline:none;
+ line-height:1.6;
+}
+
+.controls{
+ margin:15px 0;
+ display:flex;
+ flex-wrap:wrap;
+ gap:5px;
+}
+
+/* TABLE */
+
+.table-wrap{
+ overflow:auto;
+}
+
+table{
+ width:100%;
+ border-collapse:collapse;
+ background:var(--panel);
+ border-radius:15px;
+ overflow:hidden;
+}
+
+th,td{
+ padding:14px;
+ border-bottom:1px solid var(--border);
+ text-align:left;
+}
+
+th{color:#76c8ff}
+td{color:#c5d3e0}
+
+/* LIGHT MODE */
+
+body.light{
+ background:#edf4fb;
+ color:#102033;
+}
+
+body.light .sidebar,
+body.light .topbar{
+ background:rgba(246,250,255,.96);
+}
+
+body.light .card,
+body.light .stat,
+body.light .lesson,
+body.light .quiz-box,
+body.light .type-stat{
+ background:white;
+}
+
+body.light .hero{
+ background:white;
+}
+
+body.light .search input{
+ background:white;
+ color:#102033;
+}
+
+body.light .card p,
+body.light .lesson p,
+body.light .lesson li,
+body.light td{
+ color:#4e6073;
+}
+
+/* MOBILE */
+
+@media(max-width:1000px){
+ .grid{grid-template-columns:repeat(2,1fr)}
+ .stats{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:700px){
+
+ .sidebar{
+  transform:translateX(-100%);
+ }
+
+ .sidebar.open{
+  transform:translateX(0);
+ }
+
+ .main{
+  margin-left:0;
+  width:100%;
+ }
+
+ .mobile-menu{
+  display:block;
+ }
+
+ .topbar{
+  padding:10px;
+ }
+
+ .search{
+  width:55%;
+ }
+
+ .content{
+  padding:15px;
+ }
+
+ .hero{
+  padding:25px;
+ }
+
+ .grid{
+  grid-template-columns:1fr;
+ }
+
+ .stats{
+  grid-template-columns:1fr 1fr;
+ }
+
+ .typing-stats{
+  grid-template-columns:1fr 1fr;
+ }
+
+ .lesson{
+  padding:20px;
+ }
+
+ .question{
+  font-size:19px;
+ }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar" id="sidebar">
+
+ <div class="brand">
+  <div class="brand-logo">🎓</div>
+  <div>
+   <h1>Learn With Kamal</h1>
+   <small>Computer Academy</small>
+  </div>
+ </div>
+
+ <div class="nav">
+
+  <div class="nav-title">Main</div>
+
+  <button class="active" onclick="showPage('dashboard',this)">
+   🏠 Dashboard
+  </button>
+
+  <button onclick="showPage('lessons',this)">
+   📚 All Lessons
+  </button>
+
+  <button onclick="showPage('quiz',this)">
+   🧠 100 Hard Quiz
+  </button>
+
+  <button onclick="showPage('typing',this)">
+   ⌨️ Typing Master
+  </button>
+
+  <button onclick="showPage('progress',this)">
+   📊 My Progress
+  </button>
+
+  <div class="nav-title">Computer Courses</div>
+
+  <button onclick="openLesson('basics')">🖥️ Computer Basics</button>
+  <button onclick="openLesson('hardware')">⚙️ Hardware</button>
+  <button onclick="openLesson('software')">💾 Software & OS</button>
+  <button onclick="openLesson('network')">🌐 Networking</button>
+  <button onclick="openLesson('security')">🔐 Cybersecurity</button>
+  <button onclick="openLesson('programming')">👨‍💻 Programming</button>
+  <button onclick="openLesson('database')">🗄️ Databases</button>
+  <button onclick="openLesson('cloud')">☁️ Cloud & AI</button>
+
+  <div class="nav-title">Settings</div>
+
+  <button onclick="changeLanguage()">🌍 Language</button>
+  <button onclick="toggleTheme()">🌙 Theme</button>
+  <button onclick="resetProgress()">♻️ Reset Progress</button>
+
+ </div>
+</aside>
+
+<!-- MAIN -->
+
+<main class="main">
+
+<header class="topbar">
+
+ <button class="icon-btn mobile-menu" onclick="toggleSidebar()">☰</button>
+
+ <div class="search">
+  <input
+   id="search"
+   placeholder="Search computer topics..."
+   oninput="searchLessons()">
+ </div>
+
+ <div class="actions">
+  <button class="icon-btn" onclick="changeLanguage()">🌍</button>
+  <button class="icon-btn" onclick="toggleTheme()">☀️</button>
+ </div>
+
+</header>
+
+<div class="content" id="content"></div>
+
+</main>
+
+</div>
+
+<script>
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+const lang={
+ en:{
+  welcome:"Master Computers. Build Your Future.",
+  subtitle:"Learn computer basics, advanced technology, programming, networking, cybersecurity, databases, AI and more.",
+  start:"Start Learning"
+ },
+ hi:{
+  welcome:"कंप्यूटर सीखें और अपना भविष्य बनाएं।",
+  subtitle:"कंप्यूटर बेसिक्स से लेकर एडवांस टेक्नोलॉजी, प्रोग्रामिंग, नेटवर्किंग, साइबर सिक्योरिटी और AI तक सीखें।",
+  start:"सीखना शुरू करें"
+ },
+ pa:{
+  welcome:"ਕੰਪਿਊਟਰ ਸਿੱਖੋ ਅਤੇ ਆਪਣਾ ਭਵਿੱਖ ਬਣਾਓ।",
+  subtitle:"ਕੰਪਿਊਟਰ ਬੇਸਿਕ ਤੋਂ ਐਡਵਾਂਸ ਟੈਕਨੋਲੋਜੀ, ਪ੍ਰੋਗਰਾਮਿੰਗ, ਨੈੱਟਵਰਕਿੰਗ, ਸਾਈਬਰ ਸਿਕਿਉਰਿਟੀ ਅਤੇ AI ਤੱਕ ਸਿੱਖੋ।",
+  start:"ਸਿੱਖਣਾ ਸ਼ੁਰੂ ਕਰੋ"
+ }
+};
+
+let language=localStorage.getItem("kamalLanguage")||"en";
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+let completed=JSON.parse(
+ localStorage.getItem("kamalCompleted")||"[]"
+);
+
+let totalCorrect=Number(
+ localStorage.getItem("kamalCorrect")||0
+);
+
+let totalAnswered=Number(
+ localStorage.getItem("kamalAnswered")||0
+);
+
+/* =========================================================
+   LESSONS
+========================================================= */
+
+const lessons=[
+
+{
+ id:"basics",
+ icon:"🖥️",
+ title:"Computer Fundamentals",
+ level:"BEGINNER",
+ html:`
+ <h2>Computer Fundamentals</h2>
+
+ <p>
+ A computer is an electronic programmable machine that accepts
+ input, processes information, stores data and produces output.
+ </p>
+
+ <h3>Four Main Operations</h3>
+
+ <ul>
+  <li><b>Input:</b> keyboard, mouse, microphone, scanner.</li>
+  <li><b>Processing:</b> CPU executes instructions.</li>
+  <li><b>Storage:</b> RAM, SSD, HDD and other storage.</li>
+  <li><b>Output:</b> monitor, printer, speakers.</li>
+ </ul>
+
+ <h3>Binary System</h3>
+
+ <p>
+ Digital computers represent information using bits. A bit has
+ two possible states: 0 and 1. Eight bits make one byte.
+ </p>
+
+ <h3>Important Units</h3>
+
+ <ul>
+  <li>1 Byte = 8 bits</li>
+  <li>1 KB ≈ 1,000 bytes</li>
+  <li>1 MB ≈ 1,000 KB</li>
+  <li>1 GB ≈ 1,000 MB</li>
+  <li>1 TB ≈ 1,000 GB</li>
+ </ul>
+
+ <h3>Computer Generations</h3>
+
+ <p>
+ Early computers used vacuum tubes. Later generations used
+ transistors, integrated circuits, microprocessors and modern
+ highly integrated computing systems.
+ </p>
+ `
+},
+
+{
+ id:"hardware",
+ icon:"⚙️",
+ title:"Hardware & CPU Architecture",
+ level:"INTERMEDIATE",
+ html:`
+ <h2>Hardware & CPU Architecture</h2>
+
+ <p>
+ Hardware refers to the physical components of a computer.
+ </p>
+
+ <h3>CPU</h3>
+
+ <p>
+ The CPU executes instructions. Important concepts include
+ registers, cache, cores, threads, pipelines and branch prediction.
+ </p>
+
+ <h3>CPU Cache</h3>
+
+ <p>
+ Cache memory is much smaller and faster than main memory and
+ helps reduce the time required to access frequently needed data.
+ </p>
+
+ <h3>RAM</h3>
+
+ <p>
+ RAM is volatile working memory used by active programs and
+ operating-system processes.
+ </p>
+
+ <h3>Storage</h3>
+
+ <ul>
+  <li>HDD — magnetic storage with moving parts.</li>
+  <li>SSD — flash-based storage without spinning platters.</li>
+  <li>NVMe SSD — high-speed SSD using PCIe.</li>
+ </ul>
+
+ <h3>Motherboard</h3>
+
+ <p>
+ The motherboard connects the CPU, memory, storage, expansion
+ devices and peripheral interfaces.
+ </p>
+ `
+},
+
+{
+ id:"software",
+ icon:"💾",
+ title:"Operating Systems & Software",
+ level:"INTERMEDIATE",
+ html:`
+ <h2>Operating Systems</h2>
+
+ <p>
+ An operating system manages hardware resources and provides
+ services that applications use.
+ </p>
+
+ <h3>Main Responsibilities</h3>
+
+ <ul>
+  <li>Process management</li>
+  <li>Memory management</li>
+  <li>File systems</li>
+  <li>Device management</li>
+  <li>User permissions</li>
+  <li>Networking</li>
+  <li>Security</li>
+ </ul>
+
+ <h3>Processes and Threads</h3>
+
+ <p>
+ A process represents a running program and its resources.
+ Threads are execution units within processes and can share
+ process resources.
+ </p>
+
+ <h3>Virtual Memory</h3>
+
+ <p>
+ Virtual memory allows operating systems to provide an address
+ space larger than physical RAM by using storage as backing
+ memory for some pages.
+ </p>
+ `
+},
+
+{
+ id:"network",
+ icon:"🌐",
+ title:"Computer Networking",
+ level:"ADVANCED",
+ html:`
+ <h2>Computer Networking</h2>
+
+ <p>
+ Networking allows computers and devices to exchange information.
+ </p>
+
+ <h3>OSI Model</h3>
+
+ <ol>
+  <li>Physical</li>
+  <li>Data Link</li>
+  <li>Network</li>
+  <li>Transport</li>
+  <li>Session</li>
+  <li>Presentation</li>
+  <li>Application</li>
+ </ol>
+
+ <h3>TCP and UDP</h3>
+
+ <p>
+ TCP provides connection-oriented reliable ordered delivery.
+ UDP is connectionless and has less protocol overhead.
+ </p>
+
+ <h3>Important Topics</h3>
+
+ <ul>
+  <li>IP addressing</li>
+  <li>Subnetting</li>
+  <li>DNS</li>
+  <li>DHCP</li>
+  <li>NAT</li>
+  <li>Routing</li>
+  <li>Switching</li>
+  <li>HTTP and HTTPS</li>
+ </ul>
+
+ <h3>Example</h3>
+
+ <div class="code">
+Client → Switch → Router → Internet → Server
+ </div>
+ `
+},
+
+{
+ id:"security",
+ icon:"🔐",
+ title:"Cybersecurity",
+ level:"ADVANCED",
+ html:`
+ <h2>Cybersecurity</h2>
+
+ <p>
+ Cybersecurity protects systems, networks and information
+ against unauthorized access, modification and disruption.
+ </p>
+
+ <h3>CIA Triad</h3>
+
+ <ul>
+  <li><b>Confidentiality</b> — prevent unauthorized disclosure.</li>
+  <li><b>Integrity</b> — prevent unauthorized modification.</li>
+  <li><b>Availability</b> — keep systems accessible.</li>
+ </ul>
+
+ <h3>Authentication vs Authorization</h3>
+
+ <p>
+ Authentication determines who a user is.
+ Authorization determines what that user is allowed to access.
+ </p>
+
+ <h3>Security Principles</h3>
+
+ <ul>
+  <li>Least privilege</li>
+  <li>Defense in depth</li>
+  <li>Strong authentication</li>
+  <li>Encryption</li>
+  <li>Secure backups</li>
+  <li>Patch management</li>
+ </ul>
+ `
+},
+
+{
+ id:"programming",
+ icon:"👨‍💻",
+ title:"Programming & Algorithms",
+ level:"ADVANCED",
+ html:`
+ <h2>Programming & Algorithms</h2>
+
+ <p>
+ Programming is the process of creating instructions that a
+ computer can execute.
+ </p>
+
+ <h3>Programming Fundamentals</h3>
+
+ <ul>
+  <li>Variables</li>
+  <li>Data types</li>
+  <li>Functions</li>
+  <li>Loops</li>
+  <li>Conditions</li>
+  <li>Objects</li>
+  <li>Classes</li>
+  <li>Exceptions</li>
+ </ul>
+
+ <h3>Big-O Complexity</h3>
+
+ <div class="code">
+O(1)       Constant
+O(log n)   Logarithmic
+O(n)       Linear
+O(n log n) Linearithmic
+O(n²)      Quadratic
+O(2ⁿ)      Exponential
+ </div>
+
+ <h3>Data Structures</h3>
+
+ <p>
+ Important data structures include arrays, linked lists,
+ stacks, queues, hash tables, trees and graphs.
+ </p>
+ `
+},
+
+{
+ id:"database",
+ icon:"🗄️",
+ title:"Databases & SQL",
+ level:"ADVANCED",
+ html:`
+ <h2>Databases & SQL</h2>
+
+ <p>
+ Databases organize and manage information so it can be
+ efficiently stored, searched and updated.
+ </p>
+
+ <h3>Relational Database</h3>
+
+ <p>
+ Relational databases organize data into tables and use keys
+ to establish relationships.
+ </p>
+
+ <h3>SQL Example</h3>
+
+ <div class="code">
+SELECT name, marks
+FROM students
+WHERE marks &gt;= 80
+ORDER BY marks DESC;
+ </div>
+
+ <h3>Important Concepts</h3>
+
+ <ul>
+  <li>Primary keys</li>
+  <li>Foreign keys</li>
+  <li>Indexes</li>
+  <li>Transactions</li>
+  <li>ACID</li>
+  <li>Normalization</li>
+  <li>Joins</li>
+ </ul>
+ `
+},
+
+{
+ id:"cloud",
+ icon:"☁️",
+ title:"Cloud Computing & Artificial Intelligence",
+ level:"ADVANCED",
+ html:`
+ <h2>Cloud Computing & AI</h2>
+
+ <h3>Cloud Computing</h3>
+
+ <p>
+ Cloud computing provides computing resources over a network,
+ often with on-demand provisioning.
+ </p>
+
+ <h3>Cloud Service Models</h3>
+
+ <ul>
+  <li><b>IaaS</b> — Infrastructure as a Service</li>
+  <li><b>PaaS</b> — Platform as a Service</li>
+  <li><b>SaaS</b> — Software as a Service</li>
+ </ul>
+
+ <h3>Artificial Intelligence</h3>
+
+ <p>
+ AI systems can perform tasks such as classification,
+ prediction, generation, recognition and decision support.
+ </p>
+
+ <h3>Machine Learning</h3>
+
+ <p>
+ Machine learning systems learn patterns from data instead
+ of depending entirely on manually written rules.
+ </p>
+ `
+}
+
+];
+
+/* =========================================================
+   100 HARD QUESTIONS
+========================================================= */
+
+const quiz=[
+
+["Which CPU component stores extremely small values directly used during instruction execution?",["Registers","SSD","HDD","Optical disk"],0,"CPU registers are very small, very fast storage locations used directly during execution."],
+
+["Which OSI layer handles logical addressing and routing?",["Transport","Network","Session","Presentation"],1,"The Network layer is responsible for logical addressing and routing."],
+
+["Which protocol converts domain names into IP addresses?",["DHCP","DNS","ARP","FTP"],1,"DNS resolves human-readable domain names to IP addresses."],
+
+["Which SQL operation combines rows from multiple related tables?",["JOIN","DROP","DELETE","TRUNCATE"],0,"JOIN combines related rows from two or more tables."],
+
+["Which data structure follows Last-In First-Out?",["Queue","Stack","Graph","Heap"],1,"A stack removes the most recently added element first."],
+
+["What is the typical time complexity of binary search on sorted data?",["O(n)","O(n²)","O(log n)","O(2ⁿ)"],2,"Binary search repeatedly halves the search space."],
+
+["Which memory is normally volatile?",["SSD","RAM","ROM","DVD"],1,"RAM normally loses its contents when power is removed."],
+
+["Which security principle gives users only the permissions they require?",["Maximum privilege","Least privilege","Open access","Full trust"],1,"Least privilege minimizes unnecessary permissions."],
+
+["Which technology translates private IP addresses to public addresses?",["NAT","DNS","SMTP","SSH"],0,"Network Address Translation maps private and public address spaces."],
+
+["Which CPU technique predicts conditional branch outcomes?",["Branch prediction","Paging","Spooling","Indexing"],0,"Branch prediction attempts to predict which path execution will take."],
+
+["Which database constraint uniquely identifies each row?",["Foreign key","Primary key","View","Trigger"],1,"A primary key uniquely identifies rows in a table."],
+
+["Which transport protocol provides reliable ordered delivery?",["UDP","TCP","ICMP","ARP"],1,"TCP provides connection-oriented reliable ordered delivery."],
+
+["Which address identifies a network interface at the data-link layer?",["MAC address","URL","Port number","PID"],0,"MAC addresses identify network interfaces at the data-link layer."],
+
+["Which scheduling method can cause starvation when priorities remain unchanged?",["Priority scheduling","Round robin","FCFS","FIFO"],0,"Low-priority processes may wait indefinitely in priority scheduling."],
+
+["Which ACID property means a transaction is all-or-nothing?",["Atomicity","Isolation","Durability","Indexing"],0,"Atomicity means the transaction either completes fully or has no partial effect."],
+
+["Which attack tricks users into revealing sensitive information?",["Phishing","Caching","Compression","Defragmentation"],0,"Phishing uses deceptive messages or pages to obtain information."],
+
+["Which structure provides average O(1) key lookup under suitable hashing conditions?",["Hash table","Linked list","Stack","Queue"],0,"Hash tables can provide average constant-time lookup."],
+
+["What does HTTPS provide beyond ordinary HTTP?",["TLS-protected communication","CPU acceleration","Database indexing","File compression"],0,"HTTPS uses TLS to protect HTTP communication."],
+
+["Which hardware component executes machine instructions?",["CPU","Monitor","Keyboard","Printer"],0,"The CPU executes program instructions."],
+
+["Which storage device uses flash memory instead of spinning magnetic platters?",["SSD","HDD","Tape","Floppy disk"],0,"SSDs use flash memory and have no spinning platters."],
+
+["Which Unix command prints the current working directory?",["pwd","cd","rm","mkdir"],0,"pwd displays the current working directory."],
+
+["Which Linux permission symbol represents the file owner?",["u","g","o","a"],0,"In symbolic permissions, u represents the owner/user."],
+
+["Which SQL clause filters grouped results after aggregation?",["WHERE","GROUP BY","HAVING","ORDER BY"],2,"HAVING filters groups after GROUP BY and aggregation."],
+
+["Which protocol automatically supplies IP configuration to clients?",["DHCP","DNS","HTTPS","SSH"],0,"DHCP dynamically assigns network configuration."],
+
+["What is the process of dividing a network into smaller networks?",["Subnetting","Compiling","Hashing","Rendering"],0,"Subnetting divides an IP network into smaller logical networks."],
+
+["Which algorithmic approach repeatedly chooses a locally optimal option?",["Greedy","Brute force","Random search","Backtracking only"],0,"Greedy algorithms make locally optimal choices at each step."],
+
+["Which sorting algorithm commonly uses partitioning and has average O(n log n) complexity?",["Quicksort","Bubble sort","Linear search","Counting sort"],0,"Quicksort partitions the input and recursively sorts the partitions."],
+
+["What technique stores frequently accessed information for faster reuse?",["Caching","Formatting","Polling","Fragmentation"],0,"Caching stores commonly used information in faster-access storage."],
+
+["Which OS feature can use storage as backing memory?",["Virtual memory","DNS","Routing","Indexing"],0,"Virtual memory uses storage to back portions of virtual address space."],
+
+["Which protocol provides encrypted remote shell access?",["SSH","FTP","HTTP","POP3"],0,"SSH provides encrypted remote administration and shell access."],
+
+["Which port is traditionally associated with HTTPS?",["21","25","443","110"],2,"TCP port 443 is conventionally associated with HTTPS."],
+
+["Which protocol is commonly used to transfer email between mail servers?",["SMTP","IMAP","DNS","DHCP"],0,"SMTP is used for email transfer."],
+
+["Which protocol synchronizes email messages and folders between client and server?",["IMAP","SMTP","ARP","ICMP"],0,"IMAP provides mailbox synchronization."],
+
+["What protects one process from directly corrupting another process's memory?",["Memory isolation","DNS","Compression","Routing"],0,"Operating systems use memory protection and isolation mechanisms."],
+
+["Which database object behaves like a virtual table created from a query?",["View","Index","Trigger","Sequence"],0,"A view is a virtual table based on a query."],
+
+["Which normal form removes partial dependency on a composite key?",["1NF","2NF","3NF","5NF"],1,"Second normal form addresses partial dependencies."],
+
+["Which normal form addresses transitive dependencies?",["1NF","2NF","3NF","4NF"],2,"Third normal form addresses transitive dependencies."],
+
+["Which data structure is normally used for breadth-first search?",["Queue","Stack","Tree","Hash table"],0,"BFS processes vertices level by level using a queue."],
+
+["Which structure is naturally associated with depth-first search?",["Stack","Queue","Database","Cache"],0,"DFS uses stack behavior, either explicitly or through recursion."],
+
+["Which algorithm finds shortest paths from a source with non-negative edge weights?",["Dijkstra","Bubble sort","Binary search","DFS"],0,"Dijkstra's algorithm handles non-negative weighted edges."],
+
+["Which algorithm constructs a minimum spanning tree by considering edges in increasing weight order?",["Kruskal","Binary search","KMP","Heap sort"],0,"Kruskal's algorithm processes edges by increasing weight."],
+
+["Which cryptographic primitive creates a one-way digest?",["Hash function","Symmetric cipher","VPN","Router"],0,"Cryptographic hashes create fixed-size digests designed to be difficult to reverse."],
+
+["Which key is intended to be distributed in public-key cryptography?",["Public key","Private key","Password","Session secret"],0,"Public keys are intended for distribution."],
+
+["Which security property protects information from unauthorized modification?",["Integrity","Availability","Latency","Compression"],0,"Integrity concerns unauthorized modification."],
+
+["Which backup stores changes since the most recent full backup?",["Differential","Incremental","RAM backup","Cache backup"],0,"Differential backup contains changes since the last full backup."],
+
+["Which backup stores changes since the previous backup of any type?",["Incremental","Differential","Full","Mirror"],0,"Incremental backups contain changes since the previous backup."],
+
+["Which hypervisor runs directly on physical hardware?",["Type 1","Type 2","Application layer","Compiler"],0,"Type 1 hypervisors run directly on hardware."],
+
+["Which cloud model provides virtual machines and storage infrastructure?",["IaaS","SaaS","PaaS","BIOS"],0,"IaaS provides fundamental infrastructure resources."],
+
+["Which cloud model provides a managed application-development platform?",["PaaS","IaaS","SaaS","RAID"],0,"PaaS provides a managed platform for developing applications."],
+
+["Which cloud model delivers complete software applications?",["SaaS","IaaS","PaaS","VPN"],0,"SaaS provides complete software applications to users."],
+
+["Which RAID level mirrors data?",["RAID 1","RAID 0","RAID 5","JBOD"],0,"RAID 1 stores mirrored copies of data."],
+
+["Which RAID level provides striping without redundancy?",["RAID 0","RAID 1","RAID 6","RAID 10"],0,"RAID 0 stripes data without redundancy."],
+
+["Which HTML tag represents the highest-level heading?",["h1","h6","head","title"],0,"h1 is the highest-level HTML heading."],
+
+["Which CSS property controls text color?",["color","display","position","font-style"],0,"The color property controls text color."],
+
+["Which JavaScript declaration is block-scoped and reassignable?",["let","const","static","define"],0,"let creates a block-scoped binding that can be reassigned."],
+
+["Which JavaScript declaration creates a non-reassignable binding?",["const","let","var","fixed"],0,"const creates a binding that cannot be reassigned."],
+
+["Which HTTP method normally retrieves a resource?",["GET","POST","DELETE","PATCH"],0,"GET requests a resource representation."],
+
+["Which HTTP status code indicates successful processing?",["200","301","404","500"],0,"HTTP 200 indicates success."],
+
+["Which HTTP status means the requested resource was not found?",["404","201","204","302"],0,"HTTP 404 means the requested resource was not found."],
+
+["Which HTTP status normally represents an internal server error?",["500","200","301","304"],0,"HTTP 500 indicates an internal server error."],
+
+["Which pattern matching algorithm uses a prefix-function style preprocessing method?",["KMP","Dijkstra","Prim","Heap sort"],0,"Knuth-Morris-Pratt uses preprocessing to avoid unnecessary comparisons."],
+
+["Which sorting algorithm builds a heap and repeatedly extracts elements?",["Heap sort","Merge sort","Bubble sort","Insertion sort"],0,"Heap sort uses a heap structure during sorting."],
+
+["Which stable sorting algorithm divides data and then merges sorted portions?",["Merge sort","Heap sort","Selection sort","Quickselect"],0,"Merge sort divides the input and merges sorted halves."],
+
+["Which notation describes an asymptotic upper bound?",["Big-O","Big-Theta","Big-Omega","IEEE"],0,"Big-O describes an asymptotic upper bound."],
+
+["Which notation describes a tight asymptotic bound?",["Big-Theta","Big-O","Big-Omega","ASCII"],0,"Big-Theta describes a tight asymptotic bound."],
+
+["Which CPU register tracks the address of the next instruction?",["Program counter","Stack pointer","Cache tag","Accumulator"],0,"The program counter tracks the next instruction address."],
+
+["Which register tracks the current stack location?",["Stack pointer","Program counter","Instruction decoder","Cache tag"],0,"The stack pointer tracks the current stack position."],
+
+["Which instruction-cycle stage interprets the fetched instruction?",["Decode","Render","Route","Format"],0,"The decode stage interprets the instruction."],
+
+["Which memory is faster and smaller than RAM and close to CPU execution units?",["Cache","HDD","Tape","Optical disk"],0,"CPU cache is faster and smaller than main memory."],
+
+["Which OS capability allows multiple programs to share CPU time?",["Multitasking","Formatting","Defragmentation","Indexing"],0,"Multitasking allows multiple tasks to share system resources."],
+
+["Which scheduling algorithm rotates processes through time slices?",["Round robin","Dijkstra","DFS","Static hashing"],0,"Round robin gives each ready process a time slice."],
+
+["What is deadlock?",["Processes waiting indefinitely for resources","Successful backup","Fast cache","Network cable"],0,"Deadlock occurs when processes are permanently blocked waiting for resources."],
+
+["Which is one of the classic necessary conditions for deadlock?",["Circular wait","High bandwidth","Caching","Compression"],0,"Circular wait is one of the four classic deadlock conditions."],
+
+["Which Linux command changes directories?",["cd","pwd","ls","cat"],0,"cd changes the current directory."],
+
+["Which Linux command lists files and directories?",["ls","cd","pwd","touch"],0,"ls lists directory contents."],
+
+["Which Linux command changes permissions?",["chmod","grep","ps","whoami"],0,"chmod modifies file permission bits."],
+
+["Which Unix command searches text using patterns?",["grep","mkdir","cd","passwd"],0,"grep searches text using patterns."],
+
+["What is compilation?",["Translation of source code into another executable/intermediate representation","Network routing","Database indexing","Data compression"],0,"Compilation translates source code into another form suitable for execution or further processing."],
+
+["Which language is executed by modern web browsers?",["JavaScript","SQL","HTML","CSS"],0,"JavaScript is executed by browser JavaScript engines."],
+
+["Which technology structures web documents?",["HTML","CSS","SQL","Bash"],0,"HTML defines the structure of web documents."],
+
+["Which technology controls web-page styling?",["CSS","HTML","SQL","DNS"],0,"CSS controls presentation and layout."],
+
+["Which database feature can improve search performance?",["Index","Normalization only","Encryption","Replication only"],0,"Indexes provide auxiliary structures for faster data retrieval."],
+
+["Which ACID property means committed data survives failures?",["Durability","Atomicity","Isolation","Consistency"],0,"Durability means committed changes persist."],
+
+["Which ACID property controls interactions between concurrent transactions?",["Isolation","Durability","Atomicity","Compression"],0,"Isolation concerns concurrent transaction behavior."],
+
+["Which concept groups database operations into an all-or-nothing unit?",["Transaction","DNS","Subnetting","Rendering"],0,"Transactions group operations into logical units."],
+
+["What is database replication?",["Maintaining copies of data on multiple systems","Compiling SQL","Encrypting a password","Formatting a table"],0,"Replication maintains copies of data across systems."],
+
+["What does fault tolerance mean?",["Continuing operation despite certain component failures","Increasing screen resolution","Compressing files","Removing indexes"],0,"Fault tolerance allows systems to continue operating despite specified failures."],
+
+["Which architecture separates presentation, business logic and data access?",["Three-tier architecture","Ring topology","Binary tree","Single register"],0,"Three-tier architecture separates those three major concerns."],
+
+["Which device forwards packets between different networks?",["Router","Switch","Monitor","Keyboard"],0,"Routers forward packets between networks."],
+
+["Which device normally forwards Ethernet frames inside a LAN?",["Switch","Router","DNS server","Printer"],0,"Switches forward Ethernet frames using MAC addresses."],
+
+["Which protocol maps IPv4 addresses to MAC addresses?",["ARP","DNS","SMTP","TLS"],0,"ARP resolves IPv4 addresses to link-layer addresses."],
+
+["Which protocol provides network diagnostic and error messages?",["ICMP","FTP","IMAP","SMTP"],0,"ICMP is used for network-layer control and diagnostic messages."],
+
+["Which technology can create an encrypted tunnel over an untrusted network?",["VPN","RAM","BIOS","RAID"],0,"A VPN can protect traffic through an encrypted tunnel."],
+
+["Which security approach assumes trust must be continuously verified?",["Zero Trust","Open Trust","Full Access","Anonymous Trust"],0,"Zero Trust avoids implicit trust and requires verification."],
+
+["Which authentication factor is something you possess?",["Security token","Password","PIN","Knowledge question"],0,"A hardware or software token is a possession factor."],
+
+["Which authentication factor is something you are?",["Biometric","Password","Token","PIN"],0,"Biometric characteristics represent an inherence factor."],
+
+["Which attack attempts to overwhelm a service with traffic?",["Denial of service","Phishing","Normalization","Caching"],0,"DoS attacks attempt to make services unavailable."],
+
+["What is salting in password security?",["Adding unique random data before hashing","Encrypting a router","Compressing passwords","Deleting old passwords"],0,"A salt adds unique random data before password hashing."],
+
+["Which machine-learning approach uses labeled examples?",["Supervised learning","Unsupervised learning","Random learning","Static routing"],0,"Supervised learning uses labeled training examples."],
+
+["Which approach finds patterns in unlabeled data?",["Unsupervised learning","Supervised learning","Round robin","Compilation"],0,"Unsupervised learning discovers structure without target labels."],
+
+["What is overfitting?",["A model fits training data too closely and generalizes poorly","A model has no parameters","A router has no IP","A CPU loses power"],0,"Overfitting harms performance on unseen data because the model fits training-specific patterns."],
+
+["Which metric measures the fraction of positive predictions that are actually positive?",["Precision","Recall","Latency","Bandwidth"],0,"Precision measures the correctness of positive predictions."],
+
+["Which metric measures how many actual positives were detected?",["Recall","Precision","Throughput","Availability"],0,"Recall measures the fraction of actual positive cases identified."],
+
+["What is containerization?",["Packaging applications and dependencies into isolated portable units","Encrypting databases","Creating IP addresses","Formatting disks"],0,"Containers package applications with their dependencies in isolated environments."],
+
+["Which technology commonly orchestrates containers at scale?",["Kubernetes","BIOS","SQLite","DNS"],0,"Kubernetes is widely used for container orchestration."],
+
+["Which Git command downloads a repository and creates a local copy?",["clone","merge","stash","revert"],0,"git clone creates a local copy of a repository."],
+
+["Which Git operation combines changes from one branch into another?",["merge","clone","init","status"],0,"git merge combines branch histories."],
+
+["Which development practice frequently integrates changes and automatically runs tests?",["Continuous integration","Manual formatting","Cold booting","Disk cloning"],0,"Continuous integration integrates code frequently and runs automated validation."],
+
+["Which testing level focuses on individual functions or components?",["Unit testing","System testing","Acceptance testing","Load testing"],0,"Unit testing focuses on small isolated components."],
+
+["Which testing evaluates an integrated complete system?",["System testing","Unit testing","Syntax highlighting","Compilation"],0,"System testing evaluates the complete integrated system."],
+
+["Which software principle discourages unnecessary duplication?",["DRY","FIFO","LIFO","DNS"],0,"DRY means Don't Repeat Yourself."],
+
+["Which principle says a class or component should have one primary responsibility?",["Single Responsibility Principle","Open Network Principle","Cache Principle","Binary Principle"],0,"The Single Responsibility Principle promotes one primary responsibility per component."],
+
+["Which algorithm is commonly used for minimum spanning trees by selecting safe lowest-weight edges?",["Kruskal","Binary search","KMP","BFS"],0,"Kruskal's algorithm processes edges in increasing weight order."],
+
+["Which graph algorithm can compute shortest paths when all edge weights are non-negative?",["Dijkstra","Merge sort","KMP","Bubble sort"],0,"Dijkstra's algorithm works with non-negative edge weights."],
+
+["Which concept describes reducing duplicate database information through structured design?",["Normalization","Rendering","Caching","Routing"],0,"Database normalization reduces unnecessary redundancy and dependency problems."],
+
+["Which protocol securely transfers web traffic using TLS?",["HTTPS","HTTP","FTP","Telnet"],0,"HTTPS is HTTP protected by TLS."],
+
+["Which remote-access protocol is generally preferred over insecure Telnet?",["SSH","FTP","HTTP","SMTP"],0,"SSH provides encrypted remote administration."],
+
+["Which number system is fundamental to digital computers?",["Binary","Roman","Decimal only","Morse"],0,"Digital hardware fundamentally represents data using binary states."],
+
+["What is a bit?",["A binary digit","Eight bytes","A CPU core","A file"],0,"A bit represents one binary digit."],
+
+["How many bits are in one byte?",["4","8","16","32"],1,"One byte contains eight bits."],
+
+["Which device converts digital information into a visual display?",["Monitor","Keyboard","Microphone","Scanner"],0,"A monitor displays visual output."],
+
+["Which component supplies electrical power to computer components?",["Power supply","RAM","CPU","GPU"],0,"The power supply converts and distributes electrical power."],
+
+["Which component is specialized for highly parallel graphics workloads?",["GPU","Keyboard","SSD","NIC"],0,"GPUs contain many processing units suited to parallel workloads such as graphics."],
+
+["Which component connects a computer to a network?",["Network interface","CPU cooler","RAM","Power supply"],0,"A network interface provides network connectivity."],
+
+["Which concept means making software behavior reproducible through automated build and deployment pipelines?",["DevOps automation","Manual copying","Disk formatting","Screen recording"],0,"DevOps practices commonly automate build, test and deployment workflows."],
+
+["Which practice records source-code history and enables collaboration between developers?",["Version control","Defragmentation","Compression","Formatting"],0,"Version-control systems track source changes and support collaboration."]
+
+];
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+function dashboard(){
+
+ const t=lang[language];
+
+ const accuracy=totalAnswered
+  ?Math.round(totalCorrect/totalAnswered*100)
+  :0;
+
+ return `
+
+ <section class="hero">
+
+  <span class="hero-badge">
+   🎓 LEARN WITH KAMAL • COMPUTER ACADEMY
+  </span>
+
+  <h2>
+   <span class="gradient">Learn With Kamal</span><br>
+   ${t.welcome}
+  </h2>
+
+  <p>${t.subtitle}</p>
+
+  <button class="btn" onclick="showPage('lessons')">
+   ${t.start} →
+  </button>
+
+  <button class="btn secondary" onclick="showPage('quiz')">
+   🧠 Take Hard Quiz
+  </button>
+
+ </section>
+
+ <div class="stats">
+
+  <div class="stat">
+   <strong>${lessons.length}</strong>
+   <span>Complete Courses</span>
+  </div>
+
+  <div class="stat">
+   <strong>100</strong>
+   <span>Hard Quiz Questions</span>
+  </div>
+
+  <div class="stat">
+   <strong>${accuracy}%</strong>
+   <span>Quiz Accuracy</span>
+  </div>
+
+  <div class="stat">
+   <strong>${completed.length}/${lessons.length}</strong>
+   <span>Lessons Completed</span>
+  </div>
+
+ </div>
+
+ <div class="section-head">
+  <h2>🚀 Learning Tracks</h2>
+ </div>
+
+ <div class="grid">
+
+ ${lessons.map(l=>`
+
+  <div class="card">
+
+   <div class="card-icon">${l.icon}</div>
+
+   <span class="badge">${l.level}</span>
+
+   <h3>${l.title}</h3>
+
+   <p>
+    Learn important concepts from fundamentals
+    to professional-level computer knowledge.
+   </p>
+
+   <div class="progress">
+    <div style="width:${completed.includes(l.id)?100:0}%"></div>
+   </div>
+
+   <button
+    class="btn secondary"
+    onclick="openLesson('${l.id}')">
+
+    ${completed.includes(l.id)?"✓ Review":"Start"} →
+
+   </button>
+
+  </div>
+
+ `).join("")}
+
+ </div>
+ `;
+}
+
+/* =========================================================
+   LESSON PAGE
+========================================================= */
+
+function openLesson(id){
+
+ const lesson=lessons.find(x=>x.id===id);
+
+ if(!lesson)return;
+
+ document.querySelectorAll(".nav button")
+ .forEach(b=>b.classList.remove("active"));
+
+ document.getElementById("content").innerHTML=`
+
+ <div class="lesson">
+
+  <span class="badge">${lesson.level}</span>
+
+  ${lesson.html}
+
+  <hr style="border-color:var(--border);margin:35px 0">
+
+  <button
+   class="btn green"
+   onclick="completeLesson('${lesson.id}')">
+
+   ✓ Mark Lesson Complete
+
+  </button>
+
+  <button
+   class="btn secondary"
+   onclick="showPage('lessons')">
+
+   ← Back
+
+  </button>
+
+ </div>
+
+ `;
+
+ window.scrollTo(0,0);
+}
+
+function completeLesson(id){
+
+ if(!completed.includes(id)){
+
+  completed.push(id);
+
+  localStorage.setItem(
+   "kamalCompleted",
+   JSON.stringify(completed)
+  );
+ }
+
+ alert("🎉 Lesson completed! Your progress has been saved.");
+
+ openLesson(id);
+}
+
+/* =========================================================
+   ALL LESSONS
+========================================================= */
+
+function lessonsPage(){
+
+ document.getElementById("content").innerHTML=`
+
+ <div class="section-head">
+  <h2>📚 Computer Learning Library</h2>
+  <span class="badge">${lessons.length} COURSES</span>
+ </div>
+
+ <div class="grid">
+
+ ${lessons.map(l=>`
+
+ <div class="card">
+
+  <div class="card-icon">${l.icon}</div>
+
+  <span class="badge">${l.level}</span>
+
+  <h3>${l.title}</h3>
+
+  <p>
+   Master this subject through structured
+   explanations and practical computer knowledge.
+  </p>
+
+  <button
+   class="btn"
+   onclick="openLesson('${l.id}')">
+
+   Open Lesson →
+
+  </button>
+
+ </div>
+
+ `).join("")}
+
+ </div>
+ `;
+}
+
+/* =========================================================
+   QUIZ ENGINE
+========================================================= */
+
+let qIndex=0;
+let qScore=0;
+let qLocked=false;
+
+function quizPage(){
+
+ qIndex=0;
+ qScore=0;
+ qLocked=false;
+
+ renderQuestion();
+}
+
+function renderQuestion(){
+
+ if(qIndex>=quiz.length){
+
+  finishQuiz();
+  return;
+ }
+
+ const q=quiz[qIndex];
+
+ document.getElementById("content").innerHTML=`
+
+ <div class="quiz-box">
+
+  <div class="quiz-top">
+
+   <span>
+    🧠 HARD QUIZ
+    ${qIndex+1} / ${quiz.length}
+   </span>
+
+   <span>
+    Score: ${qScore}
+   </span>
+
+  </div>
+
+  <div class="progress">
+   <div style="width:${qIndex/quiz.length*100}%"></div>
+  </div>
+
+  <div class="question">
+   ${q[0]}
+  </div>
+
+  <div id="answers">
+
+   ${q[1].map((answer,i)=>`
+
+    <button
+     class="option"
+     onclick="answerQuestion(${i})">
+
+     ${String.fromCharCode(65+i)}.
+     ${answer}
+
+    </button>
+
+   `).join("")}
+
+  </div>
+
+  <div id="explanation"></div>
+
+  <div style="margin-top:20px">
+
+   <button
+    class="btn secondary"
+    onclick="showPage('dashboard')">
+
+    Exit Quiz
+
+   </button>
+
+   <button
+    class="btn"
+    id="nextBtn"
+    style="display:none"
+    onclick="nextQuestion()">
+
+    Next Question →
+
+   </button>
+
+  </div>
+
+ </div>
+
+ `;
+}
+
+function answerQuestion(selected){
+
+ if(qLocked)return;
+
+ qLocked=true;
+
+ const q=quiz[qIndex];
+
+ const options=document.querySelectorAll(".option");
+
+ options.forEach((button,i)=>{
+
+  if(i===q[2]){
+   button.classList.add("correct");
+  }
+
+  if(i===selected && i!==q[2]){
+   button.classList.add("wrong");
+  }
+
+ });
+
+ totalAnswered++;
+
+ if(selected===q[2]){
+  qScore++;
+  totalCorrect++;
+ }
+
+ localStorage.setItem(
+  "kamalCorrect",
+  totalCorrect
+ );
+
+ localStorage.setItem(
+  "kamalAnswered",
+  totalAnswered
+ );
+
+ document.getElementById("explanation").innerHTML=`
+
+ <div class="explanation">
+
+  <b>Explanation:</b>
+  ${q[3]}
+
+ </div>
+
+ `;
+
+ document.getElementById("nextBtn").style.display="inline-block";
+}
+
+function nextQuestion(){
+
+ qIndex++;
+ qLocked=false;
+
+ renderQuestion();
+}
+
+function finishQuiz(){
+
+ const percentage=Math.round(
+  qScore/quiz.length*100
+ );
+
+ document.getElementById("content").innerHTML=`
+
+ <div class="quiz-box" style="text-align:center">
+
+  <div style="font-size:70px">🏆</div>
+
+  <h2>Quiz Completed!</h2>
+
+  <p>
+   You completed all ${quiz.length} hard-level questions.
+  </p>
+
+  <div class="stats">
+
+   <div class="stat">
+    <strong>${qScore}/${quiz.length}</strong>
+    <span>Score</span>
+   </div>
+
+   <div class="stat">
+    <strong>${percentage}%</strong>
+    <span>Accuracy</span>
+   </div>
+
+  </div>
+
+  <h3>
+   ${
+    percentage>=90
+    ?"🔥 Outstanding! Advanced computer knowledge."
+    :percentage>=75
+    ?"⭐ Excellent! Keep practicing."
+    :percentage>=50
+    ?"👍 Good work. Review the advanced lessons."
+    :"📚 Keep learning and try the quiz again."
+   }
+  </h3>
+
+  <button
+   class="btn"
+   onclick="quizPage()">
+
+   Take Quiz Again
+
+  </button>
+
+ </div>
+
+ `;
+}
+
+/* =========================================================
+   TYPING MASTER
+========================================================= */
+
+const typingPassages=[
+
+"Advanced computer users understand that speed is useful only when combined with accuracy consistency and proper technique.",
+
+"Operating systems manage processes memory files devices permissions networking and many other resources behind the scenes.",
+
+"Cybersecurity requires strong authentication least privilege encryption monitoring patch management secure backups and careful user behavior.",
+
+"Algorithms are step by step procedures for solving problems efficiently while data structures determine how information is organized and accessed.",
+
+"Modern software engineering combines programming testing version control automation deployment monitoring security and continuous improvement.",
+
+"Computer networking depends on protocols that define how devices address transmit receive route and verify information across interconnected systems.",
+
+"Database performance depends on appropriate schema design indexes query optimization transaction management caching and understanding workload patterns.",
+
+"Artificial intelligence systems can analyze data discover patterns make predictions generate content and assist people with complex information tasks."
+
+];
+
+let typingLevel=1;
+let typingText="";
+let typingStart=null;
+let typingInterval=null;
+
+function typingPage(){
+
+ typingText=typingPassages[
+  Math.floor(Math.random()*typingPassages.length)
+ ];
+
+ document.getElementById("content").innerHTML=`
+
+ <div class="typing">
+
+  <div class="section-head">
+
+   <h2>⌨️ Typing Master Pro</h2>
+
+   <span class="badge">
+    HARD • LEVEL ${typingLevel}
+   </span>
+
+  </div>
+
+  <div class="typing-stats">
+
+   <div class="type-stat">
+    <strong id="wpm">0</strong>
+    WPM
+   </div>
+
+   <div class="type-stat">
+    <strong id="accuracy">100%</strong>
+    Accuracy
+   </div>
+
+   <div class="type-stat">
+    <strong id="time">60</strong>
+    Seconds
+   </div>
+
+   <div class="type-stat">
+    <strong id="chars">0</strong>
+    Characters
+   </div>
+
+  </div>
+
+  <div class="card">
+
+   <span class="badge">
+    TYPE THE PASSAGE EXACTLY
+   </span>
+
+   <div
+    class="type-display"
+    id="typeDisplay">
+   </div>
+
+   <textarea
+    id="typingInput"
+    spellcheck="false"
+    placeholder="Click Start and begin typing..."
+    oninput="typingUpdate()">
+   </textarea>
+
+   <div class="controls">
+
+    <button
+     class="btn"
+     onclick="startTyping()">
+
+     ▶ Start / Restart
+
+    </button>
+
+    <button
+     class="btn secondary"
+     onclick="typingDifficulty(-1)">
+
+     ← Easier
+
+    </button>
+
+    <button
+     class="btn secondary"
+     onclick="typingDifficulty(1)">
+
+     Harder →
+
+    </button>
+
+   </div>
+
+   <p style="color:var(--muted)">
+    Hard mode target: <b>50+ WPM</b> and
+    <b>95%+ accuracy</b>.
+    Higher levels use longer technical passages.
+   </p>
+
+  </div>
+
+ </div>
+
+ `;
+
+ renderTyping();
+}
+
+function renderTyping(){
+
+ const display=document.getElementById("typeDisplay");
+
+ if(!display)return;
+
+ display.innerHTML=typingText
+ .split("")
+ .map((c,i)=>
+  `<span id="char${i}">
+   ${c===" "?"&nbsp;":escapeHTML(c)}
+  </span>`
+ )
+ .join("");
+
+ const input=document.getElementById("typingInput");
+
+ if(input){
+  input.value="";
+  input.disabled=false;
+ }
+}
+
+function startTyping(){
+
+ clearInterval(typingInterval);
+
+ if(typingLevel>=3){
+  typingText=
+   typingPassages.slice(0,3).join(" ");
+ }
+
+ if(typingLevel>=5){
+  typingText=
+   typingPassages.join(" ");
+ }
+
+ renderTyping();
+
+ typingStart=Date.now();
+
+ const input=document.getElementById("typingInput");
+
+ input.focus();
+
+ typingInterval=setInterval(()=>{
+
+  const elapsed=
+   Math.floor((Date.now()-typingStart)/1000);
+
+  const remaining=
+   Math.max(0,60-elapsed);
+
+  const time=document.getElementById("time");
+
+  if(time)time.textContent=remaining;
+
+  if(remaining<=0){
+
+   clearInterval(typingInterval);
+
+   input.disabled=true;
+
+   alert("⏱ Time finished! Try again to improve your typing speed.");
+  }
+
+ },250);
+}
+
+function typingUpdate(){
+
+ if(!typingStart){
+  startTyping();
+ }
+
+ const input=document.getElementById("typingInput");
+
+ const value=input.value;
+
+ let correct=0;
+
+ for(let i=0;i<value.length;i++){
+
+  const char=
+   document.getElementById("char"+i);
+
+  if(value[i]===typingText[i]){
+   correct++;
+
+   if(char)char.className="typed";
+
+  }else{
+
+   if(char)char.className="wrong";
+  }
+ }
+
+ const elapsed=
+  Math.max((Date.now()-typingStart)/1000,1);
+
+ const words=correct/5;
+
+ const wpm=
+  Math.round(words/(elapsed/60));
+
+ const accuracy=
+  value.length
+  ?Math.round(correct/value.length*100)
+  :100;
+
+ document.getElementById("wpm").textContent=
+  Math.max(0,wpm);
+
+ document.getElementById("accuracy").textContent=
+  accuracy+"%";
+
+ document.getElementById("chars").textContent=
+  value.length;
+
+ if(value.length>=typingText.length){
+
+  clearInterval(typingInterval);
+
+  input.disabled=true;
+
+  if(accuracy>=95){
+
+   alert(
+    "🎉 Level Complete!\n"+
+    "WPM: "+wpm+
+    "\nAccuracy: "+accuracy+"%"
+   );
+
+   if(typingLevel<5){
+    typingLevel++;
+   }
+
+  }else{
+
+   alert(
+    "Passage complete.\n"+
+    "Accuracy: "+accuracy+"%\n"+
+    "Try again and reach 95%+."
+   );
+
+  }
+
+ }
+}
+
+function typingDifficulty(change){
+
+ typingLevel=
+  Math.max(1,Math.min(5,typingLevel+change));
+
+ if(typingLevel===1){
+  typingText=typingPassages[0];
+ }
+
+ if(typingLevel===2){
+  typingText=typingPassages[
+   Math.floor(Math.random()*typingPassages.length)
+  ];
+ }
+
+ if(typingLevel===3){
+  typingText=typingPassages.slice(0,3).join(" ");
+ }
+
+ if(typingLevel===4){
+  typingText=typingPassages.slice(2,6).join(" ");
+ }
+
+ if(typingLevel===5){
+  typingText=typingPassages.join(" ");
+ }
+
+ renderTyping();
+
+ document.querySelector(".badge").textContent=
+  "HARD • LEVEL "+typingLevel;
+}
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+function progressPage(){
+
+ const coursePercent=
+  Math.round(
+   completed.length/lessons.length*100
+  );
+
+ const quizPercent=
+  totalAnswered
+  ?Math.round(totalCorrect/totalAnswered*100)
+  :0;
+
+ document.getElementById("content").innerHTML=`
+
+ <div class="section-head">
+  <h2>📊 My Progress</h2>
+ </div>
+
+ <div class="stats">
+
+  <div class="stat">
+   <strong>
+    ${completed.length}/${lessons.length}
+   </strong>
+   <span>Courses Completed</span>
+  </div>
+
+  <div class="stat">
+   <strong>${coursePercent}%</strong>
+   <span>Course Progress</span>
+  </div>
+
+  <div class="stat">
+   <strong>${totalAnswered}</strong>
+   <span>Questions Attempted</span>
+  </div>
+
+  <div class="stat">
+   <strong>${quizPercent}%</strong>
+   <span>Quiz Accuracy</span>
+  </div>
+
+ </div>
+
+ <div class="card">
+
+  <h3>Course Completion</h3>
+
+  <div class="progress">
+   <div style="width:${coursePercent}%"></div>
+  </div>
+
+  <p>
+   You have completed ${completed.length}
+   of ${lessons.length} major courses.
+  </p>
+
+ </div>
+
+ <div class="section-head">
+  <h2>Course Status</h2>
+ </div>
+
+ <div class="grid">
+
+ ${lessons.map(l=>`
+
+  <div class="card">
+
+   <div class="card-icon">${l.icon}</div>
+
+   <h3>${l.title}</h3>
+
+   <p>
+    ${completed.includes(l.id)
+     ?"✅ Completed"
+     :"⭕ Not completed"}
+   </p>
+
+   <button
+    class="btn secondary"
+    onclick="openLesson('${l.id}')">
+
+    Open Course
+
+   </button>
+
+  </div>
+
+ `).join("")}
+
+ </div>
+
+ `;
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function searchLessons(){
+
+ const query=
+  document.getElementById("search")
+  .value.toLowerCase()
+  .trim();
+
+ if(!query){
+
+  if(window.currentPage!=="quiz"){
+   document.getElementById("content").innerHTML=
+    dashboard();
+  }
+
+  return;
+ }
+
+ const results=
+  lessons.filter(l=>
+   l.title.toLowerCase().includes(query) ||
+   l.level.toLowerCase().includes(query) ||
+   l.html.toLowerCase().includes(query)
+  );
+
+ document.getElementById("content").innerHTML=`
+
+ <div class="section-head">
+  <h2>🔎 Search Results</h2>
+  <span class="badge">${results.length} RESULTS</span>
+ </div>
+
+ <div class="grid">
+
+ ${
+ results.length
+ ?results.map(l=>`
+
+  <div class="card">
+
+   <div class="card-icon">${l.icon}</div>
+
+   <h3>${l.title}</h3>
+
+   <span class="badge">${l.level}</span>
+
+   <p>
+    Computer learning course related to
+    "${query}".
+   </p>
+
+   <button
+    class="btn"
+    onclick="openLesson('${l.id}')">
+
+    Open Lesson
+
+   </button>
+
+  </div>
+
+ `).join("")
+ :
+ `
+ <div class="card">
+  <h3>No Results Found</h3>
+  <p>
+   Try searching for CPU, RAM, networking,
+   cybersecurity, programming, SQL, AI, etc.
+  </p>
+ </div>
+ `
+ }
+
+ </div>
+
+ `;
+}
+
+/* =========================================================
+   ROUTING
+========================================================= */
+
+let currentPage="dashboard";
+
+function showPage(page,button){
+
+ currentPage=page;
+
+ document.querySelectorAll(".nav button")
+ .forEach(b=>b.classList.remove("active"));
+
+ if(button){
+  button.classList.add("active");
+ }
+
+ if(page==="dashboard"){
+
+  document.getElementById("content").innerHTML=
+   dashboard();
+
+ }
+
+ else if(page==="lessons"){
+
+  lessonsPage();
+
+ }
+
+ else if(page==="quiz"){
+
+  quizPage();
+
+ }
+
+ else if(page==="typing"){
+
+  typingPage();
+
+ }
+
+ else if(page==="progress"){
+
+  progressPage();
+
+ }
+
+ window.scrollTo(0,0);
+}
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+function changeLanguage(){
+
+ const choice=prompt(
+ `Choose Language:
+
+ 1 = English
+ 2 = हिन्दी
+ 3 = ਪੰਜਾਬੀ`,
+ "1"
+ );
+
+ if(choice==="1")language="en";
+ else if(choice==="2")language="hi";
+ else if(choice==="3")language="pa";
+ else return;
+
+ localStorage.setItem(
+  "kamalLanguage",
+  language
+ );
+
+ alert(
+  language==="en"
+  ?"Language changed to English"
+  :language==="hi"
+  ?"भाषा हिन्दी में बदल दी गई है"
+  :"ਭਾਸ਼ਾ ਪੰਜਾਬੀ ਵਿੱਚ ਬਦਲ ਦਿੱਤੀ ਗਈ ਹੈ"
+ );
+
+ showPage("dashboard");
+}
+
+/* =========================================================
+   THEME
+========================================================= */
+
+function toggleTheme(){
+
+ document.body.classList.toggle("light");
+
+ localStorage.setItem(
+  "kamalTheme",
+  document.body.classList.contains("light")
+  ?"light"
+  :"dark"
+ );
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+function toggleSidebar(){
+
+ document
+  .getElementById("sidebar")
+  .classList.toggle("open");
+}
+
+/* =========================================================
+   RESET
+========================================================= */
+
+function resetProgress(){
+
+ const yes=confirm(
+  "Are you sure you want to reset all Learn With Kamal progress?"
+ );
+
+ if(!yes)return;
+
+ completed=[];
+ totalCorrect=0;
+ totalAnswered=0;
+
+ localStorage.removeItem("kamalCompleted");
+ localStorage.removeItem("kamalCorrect");
+ localStorage.removeItem("kamalAnswered");
+
+ alert("Progress has been reset.");
+
+ showPage("dashboard");
+}
+
+/* =========================================================
+   UTILITIES
+========================================================= */
+
+function escapeHTML(text){
+
+ return text
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;");
+}
+
+/* =========================================================
+   START
+========================================================= */
+
+if(localStorage.getItem("kamalTheme")==="light"){
+ document.body.classList.add("light");
+}
+
+showPage("dashboard");
+
+</script>
+
+</body>
+</html>
